@@ -1,21 +1,16 @@
 import { useEffect, useState } from 'react';
 import useSound from 'use-sound'; // for handling the sound
-import music1 from '../assets/ES_Ewo Ye - Amaroo.mp3';
-// import music2 from '../assets/ES_Fishbowl - Collin Lim.mp3';
-// import music3 from '../asse~ts/ES_Ordinary Love - Vicki Vox.mp3';
+import musicUrl1 from '../assets/ES_Ewo Ye - Amaroo.mp3';
 import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'; // icons for play and pause
 import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi'; // icons for next and previous track
 import { IconContext } from 'react-icons'; // for customazing the icons
-// import { PlayComponent } from './PlayComponent';
-
-// const PLAY_LIST = [music1, music2, music3];
+import { AiOutlineMenu } from 'react-icons/ai';
+import MusicList from './MusicList';
 
 function Player() {
-  // const [soundToPlay, setSoundToPlay] = useState(music1);
-
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const [play, { pause, duration, sound }] = useSound(music1, {
+  const [play, { pause, duration, sound }] = useSound(musicUrl1, {
     volume: 0.4,
   });
 
@@ -31,10 +26,7 @@ function Player() {
     sec: '',
   });
 
-  // const onPlay = () => {
-  //   setSoundToPlay(PLAY_LIST[Math.round(Math.random() * PLAY_LIST.length)]);
-  // };
-
+  // 재생 버튼 클릭 이벤트리스너
   const playingButton = () => {
     if (isPlaying) {
       pause(); // this will pause audio
@@ -45,6 +37,12 @@ function Player() {
     }
   };
 
+  // 이전 음악 재생 버튼 클릭 이벤트리스너
+  const playingPrev = () => {
+    play();
+  };
+
+  // 재생, 정지 될 때 -> sec, min, secRemain 업데이트
   useEffect(() => {
     if (duration) {
       const sec = duration / 1000;
@@ -57,6 +55,7 @@ function Player() {
     }
   }, [isPlaying]);
 
+  // sound 재생될 때마다 0.05초 간격으로 min, sec 업데이트
   useEffect(() => {
     const interval = setInterval(() => {
       if (sound) {
@@ -68,7 +67,7 @@ function Player() {
           sec,
         });
       }
-    }, 1000);
+    }, 50);
     return () => clearInterval(interval);
   }, [sound]);
 
@@ -99,8 +98,8 @@ function Player() {
           onChange={e => sound.seek([e.target.value])}
         />
       </div>
-      <div>
-        <button className="playButton">
+      <div className="btn-container">
+        <button className="playButton" onClick={playingPrev}>
           <IconContext.Provider value={{ size: '3em', color: '#27AE60' }}>
             <BiSkipPrevious />
           </IconContext.Provider>
@@ -123,8 +122,13 @@ function Player() {
             <BiSkipNext />
           </IconContext.Provider>
         </button>
-        {/* <PlayComponent soundURL={soundToPlay} onPlay={onPlay} /> */}
+        <button className="menuBtn">
+          <IconContext.Provider value={{ size: '1em', color: '#27AE60' }}>
+            <AiOutlineMenu />
+          </IconContext.Provider>
+        </button>
       </div>
+      <MusicList />
     </div>
   );
 }

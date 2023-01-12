@@ -1,0 +1,28 @@
+.list-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(213, 213, 213);
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.list-box {
+  width: 100%;
+  padding: 0;
+
+}
+.music-list {
+  list-style: none;
+  margin-bottom: 8px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+.music-list:hover {
+  background-color: gray;
+}
