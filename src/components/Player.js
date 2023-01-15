@@ -4,7 +4,6 @@ import musicUrl1 from '../assets/ES_Ewo Ye - Amaroo.mp3';
 import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'; // icons for play and pause
 import { BiSkipNext, BiSkipPrevious } from 'react-icons/bi'; // icons for next and previous track
 import { IconContext } from 'react-icons'; // for customazing the icons
-import { AiOutlineMenu } from 'react-icons/ai';
 import MusicList from './MusicList';
 
 function Player() {
@@ -76,8 +75,7 @@ function Player() {
       <h2>Music Player 🎧</h2>
       <img className="musicCover" src="https://picsum.photos/200/200" />
       <div>
-        <div className="title">Rubaiyyan</div>
-        <p className="subTitle">Qala</p>
+        <h3 className="title">Rubaiyyan - Qala</h3>
       </div>
       <div>
         <div className="time">
@@ -122,13 +120,8 @@ function Player() {
             <BiSkipNext />
           </IconContext.Provider>
         </button>
-        <button className="menuBtn">
-          <IconContext.Provider value={{ size: '1em', color: '#27AE60' }}>
-            <AiOutlineMenu />
-          </IconContext.Provider>
-        </button>
+        <MusicList />
       </div>
-      <MusicList />
     </div>
   );
 }
