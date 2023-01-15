@@ -4,9 +4,8 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: rgb(213, 213, 213);
+  background-color: white;
   border-radius: 8px;
-  margin-top: 20px;
 }
 
 .list-box {
@@ -15,14 +14,27 @@
 
 }
 .music-list {
+  cursor: pointer;
   list-style: none;
   margin-bottom: 8px;
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
-
+  transition: 0.2s ease-in-out;
 }
 
 .music-list:hover {
-  background-color: gray;
+  background-color:#e5e5e5;
+}
+
+.menu-icon {
+  -moz-transition: all .2s linear;
+  -webkit-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+.rotate.down {
+  -moz-transform:rotate(90deg);
+  -webkit-transform:rotate(90deg);
+  transform:rotate(90deg);
 }
